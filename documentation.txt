@@ -1,0 +1,36 @@
+This is a simple JEAN documentation; it showcases how JEAN works, and how you can create a JEAN parser in any programming language:
+
+1 - How it works:
+
+A .jean file is considered an array container, and any data inside the file are considered array items.
+In almost any parser, the array always starts at 0. The only exception being Lua (Or Luau), where the array starts at 1.
+
+In a .jean file:
+* A string is indicated by quotation marks (") {Depending on the parser, strings like "Hello \"World\"" may not be supported}
+* A boolean is indicated by 't' (true) or 'f' (false)
+* Items are separated by whitespace (' ', '\t', '\n'); this excludes whitespace in strings
+* A comment is indicated by '%' {Any comment is ignored by the parser until the very end of the line}
+
+Here is what a .jean file looks like ("doc_example.jean"):
+"string" 1 -0.5 t % This is a comment (string, int, float, bool)
+
+2 - Implementation:
+
+In order to implement a JEAN parser in any programming language of your choice, you must ensure that the language supports:
+* Ability to read files
+* Loops (eg. While loops)
+* Ability to make and/or import other files of that language (Also known as modules)
+* Functions, returns, and conditions
+
+To create a parser, here's what you should do:
+* Create a separate file for the parser (Ideally named "jean_parser" or similar); this should have the two main functions
+* Create the function used for parsing the extracted JEAN data (Ideally named "parse_jean_data")
+    * This function should have three variables ("tokens", "index" / "i" and "text_length" / "n")
+    * This function should have a while loop that checks if "i" is lower than "n" (Since "i" increments by 1), and it should also return "tokens" after the while loop ends
+    * Inside the while loop of this function: 
+        * Whitespaces, and comments (% or /n) are ignored
+        * Parse strings (")
+        * Parse Word/Number/Bool (Scan until next whitespace or %, then evaluate type)
+* Create a function used for loading and parsing .jean files
+    * The function must load .jean files as a UTF-8, then extract them as a variable
+    * The function must use the parsing function to parse .jean files and must return an array
