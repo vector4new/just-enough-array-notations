@@ -1,5 +1,5 @@
 # Just Enough Array Notations
-**JEAN** (Just Enough Array Notations) is a text configuration format designed for bare-metal data storage and data transfer.
+**JEAN** (Just Enough Array Notations) is a text configuration format designed for minimalistic data storage and data transfer.
 <br>
 Unlike other text configuration formats like JSON, the entirety of a .jean file is treated as an implicit array container.
 
